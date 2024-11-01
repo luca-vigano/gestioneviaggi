@@ -34,9 +34,9 @@ public class DipendenteService {
         return this.dipenteRepository.save(newDipendente);
     }
 
-    public List<Dipendente> findAll(){
-        return this.dipenteRepository.findAll();
-    }
+//    public List<Dipendente> findAll(){
+//        return this.dipenteRepository.findAll();
+//    }
 
     public Page<Dipendente> findAll(int page, int size, String sortBy){
         if (size > 100) size = 100;
