@@ -45,11 +45,8 @@ public class ViaggiController {
     }
 
     @PutMapping("/{viaggioId}")
-    public Viaggio findByIdAndUpdate(@PathVariable UUID viaggioId, @RequestBody @Validated ViaggioDTO body, BindingResult validationResult) {
-        if (validationResult.hasErrors()) {
-            validationResult.getAllErrors().forEach(System.out::println);
-            throw new BadRequestException("Errore nel payload!");
-        }
+    public Viaggio findByIdAndUpdate(@PathVariable UUID viaggioId, @RequestBody ViaggioDTO body) {
+
         return this.viaggioService.findByIdAndUpdate(viaggioId, body);
     }
 

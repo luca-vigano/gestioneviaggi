@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lucavigano.organizzaviaggi.entities.Dipendente;
+import lucavigano.organizzaviaggi.entities.Viaggio;
 
 import java.time.LocalDate;
 
@@ -17,6 +18,5 @@ public record ViaggioDTO(
         LocalDate data_viaggio,
         @NotEmpty(message = "Lo stato del viaggio è obbligatorio!")
         @Size(min = 2, max = 40, message = "Lo stato del deve essere compreso tra 2 e 40 caratteri!")
-        String stato,
-        Dipendente dipendente) {
+        String stato) {
 }

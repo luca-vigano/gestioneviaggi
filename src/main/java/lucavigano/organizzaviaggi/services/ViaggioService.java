@@ -20,7 +20,7 @@ public class ViaggioService {
     private ViaggioRepository viaggioRepository;
 
     public Viaggio save(ViaggioDTO body){
-        Viaggio newViaggio = new Viaggio(body.destinazione(), body.data_viaggio(), body.stato(), body.dipendente());
+        Viaggio newViaggio = new Viaggio(body.destinazione(), body.data_viaggio());
         return viaggioRepository.save(newViaggio);
     }
 
@@ -40,7 +40,7 @@ public class ViaggioService {
         viaggioFound.setData_viaggio(body.data_viaggio());
         viaggioFound.setDestinazione(body.destinazione());
         viaggioFound.setStato(body.stato());
-        viaggioFound.setDipendente(body.dipendente());
+
         return this.viaggioRepository.save(viaggioFound);
     }
 

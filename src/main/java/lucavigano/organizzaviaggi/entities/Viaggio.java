@@ -21,16 +21,13 @@ public class Viaggio {
 
     private String destinazione;
     private LocalDate data_viaggio;
+
     private String stato;
 
-    @OneToOne
-    @JoinColumn(name = "dipendente_id")
-    private Dipendente dipendente;
 
-    public Viaggio(String destinazione, LocalDate data_viaggio, String stato, Dipendente dipendente) {
+    public Viaggio(String destinazione, LocalDate data_viaggio) {
         this.destinazione = destinazione;
         this.data_viaggio = data_viaggio;
-        this.stato = stato;
-        this.dipendente = dipendente;
+        this.stato = "in programma";
     }
 }
