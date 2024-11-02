@@ -1,10 +1,9 @@
 package lucavigano.organizzaviaggi.controllers;
 
 
-import lucavigano.organizzaviaggi.entities.Dipendente;
+
 import lucavigano.organizzaviaggi.entities.Prenotazione;
 import lucavigano.organizzaviaggi.exception.BadRequestException;
-import lucavigano.organizzaviaggi.payloads.DipendenteDTO;
 import lucavigano.organizzaviaggi.payloads.PrenotazioneDTO;
 import lucavigano.organizzaviaggi.services.PrenotazioneService;
 import org.springframework.beans.factory.annotation.Autowired;
