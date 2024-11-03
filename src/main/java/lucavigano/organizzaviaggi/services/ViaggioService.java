@@ -2,6 +2,7 @@ package lucavigano.organizzaviaggi.services;
 
 import lucavigano.organizzaviaggi.entities.Viaggio;
 import lucavigano.organizzaviaggi.exception.NotFoundException;
+import lucavigano.organizzaviaggi.payloads.StatoDTO;
 import lucavigano.organizzaviaggi.payloads.ViaggioDTO;
 import lucavigano.organizzaviaggi.repository.ViaggioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,14 @@ public class ViaggioService {
         viaggioFound.setDataviaggio(body.data_viaggio());
         viaggioFound.setDestinazione(body.destinazione());
         viaggioFound.setStato(body.stato());
+
+        return this.viaggioRepository.save(viaggioFound);
+    }
+
+    public Viaggio findByIdAndChangeStatus (UUID viaggioId, StatoDTO stato){
+        Viaggio viaggioFound = this.findById(viaggioId);
+
+        viaggioFound.setStato(stato.stato());
 
         return this.viaggioRepository.save(viaggioFound);
     }

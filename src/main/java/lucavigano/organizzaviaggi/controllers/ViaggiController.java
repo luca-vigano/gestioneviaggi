@@ -2,6 +2,7 @@ package lucavigano.organizzaviaggi.controllers;
 
 import lucavigano.organizzaviaggi.entities.Viaggio;
 import lucavigano.organizzaviaggi.exception.BadRequestException;
+import lucavigano.organizzaviaggi.payloads.StatoDTO;
 import lucavigano.organizzaviaggi.payloads.ViaggioDTO;
 import lucavigano.organizzaviaggi.services.ViaggioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,12 @@ public class ViaggiController {
     public Viaggio findByIdAndUpdate(@PathVariable UUID viaggioId, @RequestBody ViaggioDTO body) {
 
         return this.viaggioService.findByIdAndUpdate(viaggioId, body);
+    }
+
+    @PatchMapping("/{viaggioId}")
+    public Viaggio findByIdAndChangeStatus(@PathVariable UUID viaggioId, @RequestBody StatoDTO stato){
+        System.out.println("Valore di newstato: " + stato);
+        return this.viaggioService.findByIdAndChangeStatus(viaggioId, stato);
     }
 
     @DeleteMapping("/{viaggioId}")
