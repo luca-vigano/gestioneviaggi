@@ -2,6 +2,7 @@ package lucavigano.organizzaviaggi.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lucavigano.organizzaviaggi.enums.Stati;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -22,12 +23,13 @@ public class Viaggio {
     private String destinazione;
     private LocalDate dataviaggio;
 
-    private String stato;
+    @Enumerated(EnumType.STRING)
+    private Stati stato;
 
 
     public Viaggio(String destinazione, LocalDate dataviaggio) {
         this.destinazione = destinazione;
         this.dataviaggio = dataviaggio;
-        this.stato = "in programma";
+        this.stato = Stati.IN_PROGRAMMA;
     }
 }
