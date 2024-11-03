@@ -4,8 +4,6 @@ package lucavigano.organizzaviaggi.payloads;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lucavigano.organizzaviaggi.entities.Dipendente;
-import lucavigano.organizzaviaggi.entities.Viaggio;
 
 import java.time.LocalDate;
 

@@ -4,6 +4,7 @@ package lucavigano.organizzaviaggi.services;
 import lucavigano.organizzaviaggi.entities.Dipendente;
 import lucavigano.organizzaviaggi.entities.Prenotazione;
 import lucavigano.organizzaviaggi.entities.Viaggio;
+import lucavigano.organizzaviaggi.exception.BadRequestException;
 import lucavigano.organizzaviaggi.exception.NotFoundException;
 import lucavigano.organizzaviaggi.payloads.PrenotazioneDTO;
 import lucavigano.organizzaviaggi.repository.PrenotazioneRepository;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,7 +36,14 @@ public class PrenotazioneService {
         Viaggio viaggio = viaggioRepository.findById(body.viaggioId())
                 .orElseThrow(() -> new NotFoundException(body.viaggioId()));
 
+        List<Prenotazione> prenotazioniEsistenti = prenotazioneRepository.findByDipendente_EmailAndViaggio_Dataviaggio(dipendente.getEmail(), viaggio.getDataviaggio());
+
+        if (!prenotazioniEsistenti.isEmpty()) {
+            throw new BadRequestException("L'utente ha già una prenotazione per questa data!");
+        }
+
         Prenotazione prenotazione = new Prenotazione();
+        prenotazione.setDataRichiesta(body.dataRichiesta());
         prenotazione.setDipendente(dipendente);
         prenotazione.setViaggio(viaggio);
         prenotazione.setNote(body.note());

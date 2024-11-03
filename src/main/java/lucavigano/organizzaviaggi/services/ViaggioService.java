@@ -37,7 +37,7 @@ public class ViaggioService {
     public Viaggio findByIdAndUpdate (UUID viaggioId, ViaggioDTO body){
         Viaggio viaggioFound = this.findById(viaggioId);
 
-        viaggioFound.setData_viaggio(body.data_viaggio());
+        viaggioFound.setDataviaggio(body.data_viaggio());
         viaggioFound.setDestinazione(body.destinazione());
         viaggioFound.setStato(body.stato());
 

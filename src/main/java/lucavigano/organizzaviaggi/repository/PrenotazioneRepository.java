@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface PrenotazioneRepository extends JpaRepository<Prenotazione, UUID> {
-    List<Prenotazione> findByDipendente_EmailAndViaggio_Data(String username, LocalDate data);
+    List<Prenotazione> findByDipendente_EmailAndViaggio_Dataviaggio(String username, LocalDate data);
 }

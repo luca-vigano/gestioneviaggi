@@ -20,14 +20,14 @@ public class Viaggio {
     private UUID id;
 
     private String destinazione;
-    private LocalDate data_viaggio;
+    private LocalDate dataviaggio;
 
     private String stato;
 
 
-    public Viaggio(String destinazione, LocalDate data_viaggio) {
+    public Viaggio(String destinazione, LocalDate dataviaggio) {
         this.destinazione = destinazione;
-        this.data_viaggio = data_viaggio;
+        this.dataviaggio = dataviaggio;
         this.stato = "in programma";
     }
 }
