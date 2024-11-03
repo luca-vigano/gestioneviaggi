@@ -2,6 +2,7 @@ package lucavigano.organizzaviaggi.services;
 
 import lucavigano.organizzaviaggi.entities.Viaggio;
 import lucavigano.organizzaviaggi.enums.Stati;
+import lucavigano.organizzaviaggi.exception.BadRequestException;
 import lucavigano.organizzaviaggi.exception.NotFoundException;
 import lucavigano.organizzaviaggi.payloads.ViaggioDTO;
 import lucavigano.organizzaviaggi.repository.ViaggioRepository;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -21,7 +23,12 @@ public class ViaggioService {
     private ViaggioRepository viaggioRepository;
 
     public Viaggio save(ViaggioDTO body){
+
+        if(body.data_viaggio().isBefore(LocalDate.now())){
+            throw new BadRequestException("la data inserita è già passata");
+        }
         Viaggio newViaggio = new Viaggio(body.destinazione(), body.data_viaggio());
+
         return viaggioRepository.save(newViaggio);
     }
 
@@ -36,8 +43,12 @@ public class ViaggioService {
     }
 
     public Viaggio findByIdAndUpdate (UUID viaggioId, ViaggioDTO body){
-        Viaggio viaggioFound = this.findById(viaggioId);
 
+        if(body.data_viaggio().isBefore(LocalDate.now())){
+            throw new BadRequestException("la data inserita è già passata");
+        }
+
+        Viaggio viaggioFound = this.findById(viaggioId);
         viaggioFound.setDataviaggio(body.data_viaggio());
         viaggioFound.setDestinazione(body.destinazione());
 
